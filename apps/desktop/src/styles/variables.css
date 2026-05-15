@@ -1,0 +1,149 @@
+/* =========================================================
+   DBPilot Studio
+   Global Design Tokens
+   ---------------------------------------------------------
+   Este archivo concentra las variables globales del sistema:
+   colores, radios, sombras, tamaños base y transiciones.
+
+   Objetivo visual:
+   - Estilo oscuro tipo Claude / Linear / terminal premium.
+   - UI más compacta.
+   - Mejor contraste.
+   - Íconos y estados activos más notorios.
+   ========================================================= */
+
+:root {
+  /* =======================================================
+     BACKGROUNDS
+     -------------------------------------------------------
+     Fondos principales del producto.
+     --dbp-bg: fondo general de la app.
+     --dbp-bg-soft: fondo secundario para superficies internas.
+     ======================================================= */
+
+  --dbp-bg: #151515;
+  --dbp-bg-soft: #1c1c1c;
+
+  /* =======================================================
+     PANELS
+     -------------------------------------------------------
+     Superficies de tarjetas, sidebar, topbar, tablas y modales.
+     Usamos negros cálidos, no negro puro, para una vista más premium.
+     ======================================================= */
+
+  --dbp-panel: rgba(31, 31, 31, 0.92);
+  --dbp-panel-solid: #1f1f1f;
+  --dbp-panel-soft: rgba(38, 38, 38, 0.78);
+
+  /* =======================================================
+     BORDERS
+     -------------------------------------------------------
+     Bordes sutiles para separar bloques sin sobrecargar.
+     En modo oscuro el borde necesita más presencia que en light mode.
+     ======================================================= */
+
+  --dbp-border: rgba(255, 255, 255, 0.1);
+  --dbp-border-strong: rgba(255, 255, 255, 0.18);
+
+  /* =======================================================
+     TEXT
+     -------------------------------------------------------
+     Jerarquía de texto:
+     - strong: títulos y datos clave.
+     - text: lectura normal.
+     - muted: ayudas y textos secundarios.
+     - muted-soft: placeholders, labels menores.
+     ======================================================= */
+
+  --dbp-text: #d6d3ce;
+  --dbp-text-strong: #f7f4ef;
+  --dbp-muted: #a8a29a;
+  --dbp-muted-soft: #78716c;
+
+  /* =======================================================
+     ACCENT
+     -------------------------------------------------------
+     Acento principal estilo Claude:
+     ámbar/cobre cálido para acciones, activos y foco.
+     ======================================================= */
+
+  --dbp-accent: #d97706;
+  --dbp-accent-strong: #f59e0b;
+  --dbp-accent-soft: rgba(245, 158, 11, 0.16);
+
+  /* =======================================================
+     STATUS COLORS
+     -------------------------------------------------------
+     Colores semánticos del sistema:
+     éxito, advertencia y peligro.
+     ======================================================= */
+
+  --dbp-success: #22c55e;
+  --dbp-success-soft: rgba(34, 197, 94, 0.14);
+
+  --dbp-warning: #f59e0b;
+  --dbp-warning-soft: rgba(245, 158, 11, 0.14);
+
+  --dbp-danger: #ef4444;
+  --dbp-danger-soft: rgba(239, 68, 68, 0.14);
+
+  /* =======================================================
+     ROUTE COLORS
+     -------------------------------------------------------
+     Identidad visual por módulo.
+     Sirve para que el sidebar colapsado no quede plano.
+     ======================================================= */
+
+  --dbp-route-blue: #38bdf8;
+  --dbp-route-green: #4ade80;
+  --dbp-route-purple: #c084fc;
+  --dbp-route-orange: #f59e0b;
+  --dbp-route-teal: #2dd4bf;
+  --dbp-route-indigo: #818cf8;
+  --dbp-route-pink: #f472b6;
+  --dbp-route-slate: #cbd5e1;
+
+  /* =======================================================
+     RADIUS
+     -------------------------------------------------------
+     Radios más compactos.
+     La estética tipo Claude usa suavidad, pero sin exceso.
+     ======================================================= */
+
+  --dbp-radius-xs: 5px;
+  --dbp-radius-sm: 7px;
+  --dbp-radius-md: 10px;
+  --dbp-radius-lg: 13px;
+  --dbp-radius-xl: 16px;
+
+  /* =======================================================
+     SHADOWS
+     -------------------------------------------------------
+     Sombras oscuras, suaves y profundas.
+     No deben parecer tarjetas flotando de más.
+     ======================================================= */
+
+  --dbp-shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.22);
+  --dbp-shadow-md: 0 14px 34px rgba(0, 0, 0, 0.28);
+  --dbp-shadow-lg: 0 22px 62px rgba(0, 0, 0, 0.38);
+
+  /* =======================================================
+     LAYOUT SIZES
+     -------------------------------------------------------
+     Tamaños principales del layout.
+     Sidebar más pequeño y topbar más compacto.
+     ======================================================= */
+
+  --dbp-sidebar-width: 230px;
+  --dbp-sidebar-collapsed-width: 70px;
+  --dbp-topbar-height: 60px;
+
+  /* =======================================================
+     TRANSITIONS
+     -------------------------------------------------------
+     Animaciones cortas para que la UI se sienta rápida.
+     ======================================================= */
+
+  --dbp-transition-fast: 120ms ease;
+  --dbp-transition-base: 180ms ease;
+}

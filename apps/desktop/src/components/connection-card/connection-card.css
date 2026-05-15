@@ -1,0 +1,427 @@
+/* =========================================================
+   DBPilot Studio
+   Connection Card
+   ---------------------------------------------------------
+   Tarjeta de conexión guardada.
+
+   Estilo:
+   - Oscuro tipo Claude.
+   - Compacto.
+   - Estados claros.
+   - Íconos más notorios.
+   - Compatible con acciones rápidas.
+   ========================================================= */
+
+/* =========================================================
+   CARD ROOT
+   ========================================================= */
+
+.dbp-connection-card-component {
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at top left, rgba(245, 158, 11, 0.08), transparent 34%),
+    linear-gradient(180deg, rgba(31, 31, 31, 0.94), rgba(24, 24, 24, 0.92)),
+    #1f1f1f;
+  padding: 12px;
+  display: grid;
+  gap: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    border-color var(--dbp-transition-base),
+    background var(--dbp-transition-base),
+    transform var(--dbp-transition-fast),
+    box-shadow var(--dbp-transition-base);
+}
+
+.dbp-connection-card-component::before {
+  content: "";
+  width: 92px;
+  height: 92px;
+  border-radius: 999px;
+  background: rgba(245, 158, 11, 0.1);
+  position: absolute;
+  top: -48px;
+  right: -40px;
+  opacity: 0.8;
+  z-index: -1;
+  transition:
+    transform var(--dbp-transition-base),
+    opacity var(--dbp-transition-base),
+    background var(--dbp-transition-base);
+}
+
+.dbp-connection-card-component::after {
+  content: "";
+  width: 3px;
+  height: 38px;
+  border-radius: 999px;
+  background: #f59e0b;
+  position: absolute;
+  left: 0;
+  top: 14px;
+  opacity: 0.72;
+  transition:
+    height var(--dbp-transition-base),
+    background var(--dbp-transition-base),
+    opacity var(--dbp-transition-base),
+    box-shadow var(--dbp-transition-base);
+}
+
+.dbp-connection-card-component:hover {
+  transform: translateY(-2px);
+  border-color: rgba(245, 158, 11, 0.28);
+  background:
+    radial-gradient(circle at top left, rgba(245, 158, 11, 0.1), transparent 34%),
+    linear-gradient(180deg, rgba(38, 38, 38, 0.96), rgba(28, 28, 28, 0.94)),
+    #262626;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3);
+}
+
+.dbp-connection-card-component:hover::before {
+  transform: scale(1.08);
+  opacity: 1;
+}
+
+/* =========================================================
+   ENGINE TONES
+   ========================================================= */
+
+.dbp-connection-card-component--engine-postgresql::after {
+  background: #60a5fa;
+  box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.08);
+}
+
+.dbp-connection-card-component--engine-postgresql::before {
+  background: rgba(96, 165, 250, 0.1);
+}
+
+.dbp-connection-card-component--engine-mysql::after {
+  background: #2dd4bf;
+  box-shadow: 0 0 0 4px rgba(45, 212, 191, 0.08);
+}
+
+.dbp-connection-card-component--engine-mysql::before {
+  background: rgba(45, 212, 191, 0.1);
+}
+
+.dbp-connection-card-component--engine-sqlite::after {
+  background: #c084fc;
+  box-shadow: 0 0 0 4px rgba(192, 132, 252, 0.08);
+}
+
+.dbp-connection-card-component--engine-sqlite::before {
+  background: rgba(192, 132, 252, 0.1);
+}
+
+/* =========================================================
+   CARD STATES
+   ========================================================= */
+
+.dbp-connection-card-component--active {
+  border-color: rgba(245, 158, 11, 0.34);
+  background:
+    radial-gradient(circle at top left, rgba(245, 158, 11, 0.14), transparent 36%),
+    linear-gradient(180deg, rgba(38, 38, 38, 0.98), rgba(24, 24, 24, 0.94)),
+    #262626;
+  box-shadow:
+    0 0 0 1px rgba(245, 158, 11, 0.08),
+    0 16px 34px rgba(0, 0, 0, 0.34);
+}
+
+.dbp-connection-card-component--active::after {
+  height: 52px;
+  opacity: 1;
+}
+
+.dbp-connection-card-component--connected {
+  border-color: rgba(34, 197, 94, 0.25);
+}
+
+.dbp-connection-card-component--connected::after {
+  background: #22c55e;
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.09);
+}
+
+.dbp-connection-card-component--error {
+  border-color: rgba(239, 68, 68, 0.28);
+}
+
+.dbp-connection-card-component--error::after {
+  background: #ef4444;
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.09);
+}
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.dbp-connection-card-component__main {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-width: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.dbp-connection-card-component__icon {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+  border: 1px solid rgba(245, 158, 11, 0.24);
+  border-radius: 13px;
+  background: rgba(245, 158, 11, 0.13);
+  color: #fbbf24;
+  display: grid;
+  place-items: center;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 8px 18px rgba(0, 0, 0, 0.18);
+  transition:
+    transform var(--dbp-transition-base),
+    border-color var(--dbp-transition-base),
+    background var(--dbp-transition-base),
+    color var(--dbp-transition-base),
+    box-shadow var(--dbp-transition-base);
+}
+
+.dbp-connection-card-component__icon span {
+  font-size: 11px;
+  font-weight: 950;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.dbp-connection-card-component:hover .dbp-connection-card-component__icon {
+  transform: scale(1.04);
+}
+
+.dbp-connection-card-component--engine-postgresql .dbp-connection-card-component__icon {
+  border-color: rgba(96, 165, 250, 0.26);
+  background: rgba(96, 165, 250, 0.13);
+  color: #93c5fd;
+}
+
+.dbp-connection-card-component--engine-mysql .dbp-connection-card-component__icon {
+  border-color: rgba(45, 212, 191, 0.26);
+  background: rgba(45, 212, 191, 0.13);
+  color: #5eead4;
+}
+
+.dbp-connection-card-component--engine-sqlite .dbp-connection-card-component__icon {
+  border-color: rgba(192, 132, 252, 0.26);
+  background: rgba(192, 132, 252, 0.13);
+  color: #d8b4fe;
+}
+
+.dbp-connection-card-component__content {
+  min-width: 0;
+  flex: 1;
+}
+
+.dbp-connection-card-component__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 9px;
+}
+
+.dbp-connection-card-component__head > div {
+  min-width: 0;
+}
+
+.dbp-connection-card-component h3 {
+  min-width: 0;
+  margin: 0;
+  color: #f7f4ef;
+  font-size: 14.5px;
+  font-weight: 950;
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dbp-connection-card-component p {
+  margin: 6px 0 0;
+  color: #a8a29a;
+  font-size: 11.5px;
+  font-weight: 700;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.dbp-connection-card-component__status {
+  flex: 0 0 auto;
+  padding: 5px 8px;
+  border: 1px solid rgba(245, 158, 11, 0.26);
+  border-radius: 999px;
+  background: rgba(245, 158, 11, 0.12);
+  color: #fbbf24;
+  font-size: 10px;
+  font-weight: 950;
+  line-height: 1;
+}
+
+.dbp-connection-card-component__status--ok {
+  border-color: rgba(34, 197, 94, 0.26);
+  background: rgba(34, 197, 94, 0.12);
+  color: #86efac;
+}
+
+.dbp-connection-card-component__status--error {
+  border-color: rgba(239, 68, 68, 0.26);
+  background: rgba(239, 68, 68, 0.12);
+  color: #fca5a5;
+}
+
+/* =========================================================
+   META
+   ========================================================= */
+
+.dbp-connection-card-component__meta {
+  margin-top: 9px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.dbp-connection-card-component__meta span {
+  padding: 5px 7px;
+  border: 1px solid rgba(255, 255, 255, 0.085);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #a8a29a;
+  font-size: 10px;
+  font-weight: 850;
+  line-height: 1;
+}
+
+/* =========================================================
+   ACTIONS
+   ========================================================= */
+
+.dbp-connection-card-component__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  position: relative;
+  z-index: 1;
+}
+
+.dbp-connection-card-component__actions button {
+  min-height: 31px;
+  padding: 0 10px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.045);
+  color: #d6d3ce;
+  font-size: 11px;
+  font-weight: 900;
+  transition:
+    transform var(--dbp-transition-fast),
+    border-color var(--dbp-transition-base),
+    background var(--dbp-transition-base),
+    color var(--dbp-transition-base),
+    box-shadow var(--dbp-transition-base);
+}
+
+.dbp-connection-card-component__actions button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: rgba(245, 158, 11, 0.28);
+  background: rgba(245, 158, 11, 0.09);
+  color: #f7f4ef;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22);
+}
+
+.dbp-connection-card-component__actions button:disabled {
+  opacity: 0.58;
+  cursor: not-allowed;
+}
+
+.dbp-connection-card-component__actions .dbp-connection-card-component__primary {
+  border-color: rgba(245, 158, 11, 0.24);
+  background: rgba(245, 158, 11, 0.12);
+  color: #fbbf24;
+}
+
+.dbp-connection-card-component__actions .dbp-connection-card-component__primary:hover:not(:disabled) {
+  border-color: rgba(245, 158, 11, 0.38);
+  background: rgba(245, 158, 11, 0.18);
+  color: #fcd34d;
+}
+
+.dbp-connection-card-component__actions .dbp-connection-card-component__danger {
+  border-color: rgba(239, 68, 68, 0.24);
+  background: rgba(239, 68, 68, 0.1);
+  color: #fca5a5;
+}
+
+.dbp-connection-card-component__actions .dbp-connection-card-component__danger:hover:not(:disabled) {
+  border-color: rgba(239, 68, 68, 0.36);
+  background: rgba(239, 68, 68, 0.16);
+  color: #fecaca;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 760px) {
+  .dbp-connection-card-component__head {
+    flex-direction: column;
+  }
+
+  .dbp-connection-card-component__status {
+    width: fit-content;
+  }
+
+  .dbp-connection-card-component__actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dbp-connection-card-component__actions button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 420px) {
+  .dbp-connection-card-component {
+    padding: 11px;
+  }
+
+  .dbp-connection-card-component__main {
+    gap: 9px;
+  }
+
+  .dbp-connection-card-component__icon {
+    width: 36px;
+    height: 36px;
+    flex-basis: 36px;
+    border-radius: 12px;
+  }
+
+  .dbp-connection-card-component__actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dbp-connection-card-component,
+  .dbp-connection-card-component *,
+  .dbp-connection-card-component *::before,
+  .dbp-connection-card-component *::after {
+    animation-duration: 1ms !important;
+    transition-duration: 1ms !important;
+  }
+}

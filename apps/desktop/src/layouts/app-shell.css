@@ -1,0 +1,627 @@
+/* =========================================================
+   DBPilot Studio
+   App Shell
+   ---------------------------------------------------------
+   Layout principal del proyecto.
+
+   Estilo:
+   - Oscuro tipo Claude.
+   - Más compacto.
+   - Responsive.
+   - Animado.
+   - Compatible con sidebar colapsado.
+   ========================================================= */
+
+/* =========================================================
+   SHELL ROOT
+   ---------------------------------------------------------
+   Grilla principal:
+   - Columna izquierda: Sidebar.
+   - Columna derecha: Topbar + Content.
+   ========================================================= */
+
+.dbp-shell {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: var(--dbp-sidebar-width) minmax(0, 1fr);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(245, 158, 11, 0.12), transparent 28%),
+    radial-gradient(circle at 100% 0%, rgba(168, 85, 247, 0.08), transparent 28%),
+    linear-gradient(135deg, #151515 0%, #181818 48%, #111111 100%);
+  color: var(--dbp-text);
+  transition: grid-template-columns 220ms ease;
+}
+
+/* Estado cuando el sidebar está colapsado. */
+.dbp-shell--sidebar-collapsed {
+  grid-template-columns: var(--dbp-sidebar-collapsed-width, 70px) minmax(0, 1fr);
+}
+
+/* =========================================================
+   MAIN AREA
+   ---------------------------------------------------------
+   Contenedor derecho de la app.
+   ========================================================= */
+
+.dbp-shell__main {
+  min-width: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(circle at top right, rgba(245, 158, 11, 0.07), transparent 32%),
+    linear-gradient(180deg, rgba(24, 24, 24, 0.96), rgba(18, 18, 18, 0.98)),
+    #181818;
+}
+
+/* =========================================================
+   CONTENT AREA
+   ---------------------------------------------------------
+   Scroll principal interno.
+   Más compacto para que entre más información en pantalla.
+   ========================================================= */
+
+.dbp-shell__content {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 14px;
+  animation: dbp-shell-content-enter 220ms ease both;
+}
+
+/* Scrollbar interna del contenido. */
+.dbp-shell__content::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+.dbp-shell__content::-webkit-scrollbar-track {
+  background: rgba(28, 28, 28, 0.92);
+}
+
+.dbp-shell__content::-webkit-scrollbar-thumb {
+  border: 2px solid rgba(28, 28, 28, 0.92);
+  border-radius: 999px;
+  background: rgba(168, 162, 158, 0.34);
+}
+
+.dbp-shell__content::-webkit-scrollbar-thumb:hover {
+  background: rgba(214, 211, 206, 0.48);
+}
+
+/* =========================================================
+   FALLBACK PAGE
+   ---------------------------------------------------------
+   Página para módulos pendientes o rutas no encontradas.
+   ========================================================= */
+
+.dbp-fallback-page {
+  min-height: 260px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 16px;
+  background:
+    linear-gradient(180deg, rgba(31, 31, 31, 0.94), rgba(24, 24, 24, 0.92)),
+    #1f1f1f;
+  box-shadow: var(--dbp-shadow-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 20px;
+  text-align: left;
+  animation: dbp-shell-card-enter 240ms ease both;
+}
+
+.dbp-fallback-page__icon {
+  width: 48px;
+  height: 48px;
+  flex: 0 0 auto;
+  border: 1px solid rgba(245, 158, 11, 0.24);
+  border-radius: 14px;
+  background: rgba(245, 158, 11, 0.13);
+  color: #fbbf24;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  font-weight: 950;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 10px 22px rgba(0, 0, 0, 0.22);
+}
+
+.dbp-fallback-page span {
+  color: #f59e0b;
+  font-size: 9.5px;
+  font-weight: 950;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.dbp-fallback-page h1 {
+  margin: 6px 0 0;
+  color: #f7f4ef;
+  font-size: 26px;
+  line-height: 1;
+  letter-spacing: -0.06em;
+}
+
+.dbp-fallback-page p {
+  max-width: 520px;
+  margin: 9px 0 0;
+  color: #a8a29a;
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+
+/* =========================================================
+   BUTTONS
+   ---------------------------------------------------------
+   Botones globales reutilizables.
+   Se adaptan al modo oscuro Claude.
+   ========================================================= */
+
+.dbp-button {
+  min-height: 34px;
+  padding: 0 12px;
+  border-radius: 10px;
+  font-size: 12.5px;
+  font-weight: 850;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition:
+    transform var(--dbp-transition-fast),
+    background var(--dbp-transition-base),
+    border-color var(--dbp-transition-base),
+    color var(--dbp-transition-base),
+    box-shadow var(--dbp-transition-base);
+}
+
+.dbp-button:hover {
+  transform: translateY(-1px);
+}
+
+.dbp-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.56;
+  transform: none;
+}
+
+.dbp-button--primary {
+  border-color: rgba(245, 158, 11, 0.22);
+  background:
+    linear-gradient(135deg, #f59e0b, #d97706);
+  color: #1c1917;
+  box-shadow: 0 12px 24px rgba(245, 158, 11, 0.18);
+}
+
+.dbp-button--primary:hover:not(:disabled) {
+  border-color: rgba(245, 158, 11, 0.36);
+  box-shadow: 0 16px 30px rgba(245, 158, 11, 0.22);
+}
+
+.dbp-button--secondary {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.045);
+  color: #d6d3ce;
+}
+
+.dbp-button--secondary:hover:not(:disabled) {
+  border-color: rgba(245, 158, 11, 0.28);
+  background: rgba(245, 158, 11, 0.1);
+  color: #f7f4ef;
+}
+
+.dbp-button--danger {
+  border-color: rgba(239, 68, 68, 0.26);
+  background: rgba(239, 68, 68, 0.12);
+  color: #fca5a5;
+}
+
+.dbp-button--danger:hover:not(:disabled) {
+  border-color: rgba(239, 68, 68, 0.38);
+  background: rgba(239, 68, 68, 0.18);
+  color: #fecaca;
+}
+
+/* =========================================================
+   PAGE BASE
+   ---------------------------------------------------------
+   Base para todas las páginas internas.
+   ========================================================= */
+
+.dbp-page {
+  display: grid;
+  gap: 14px;
+  animation: dbp-shell-content-enter 220ms ease both;
+}
+
+/* =========================================================
+   PAGE HEADER
+   ---------------------------------------------------------
+   Encabezados de páginas internas.
+   Más pequeños y alineados al tema oscuro.
+   ========================================================= */
+
+.dbp-page-header {
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 16px;
+  background:
+    linear-gradient(180deg, rgba(31, 31, 31, 0.94), rgba(24, 24, 24, 0.92)),
+    #1f1f1f;
+  box-shadow: var(--dbp-shadow-md);
+  padding: 17px;
+  animation: dbp-shell-card-enter 240ms ease both;
+}
+
+.dbp-page-header__eyebrow {
+  margin: 0 0 7px;
+  color: #f59e0b;
+  font-size: 9.5px;
+  font-weight: 950;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.dbp-page-header h1 {
+  margin: 0;
+  color: #f7f4ef;
+  font-size: clamp(25px, 3vw, 38px);
+  line-height: 1;
+  letter-spacing: -0.07em;
+}
+
+.dbp-page-header p {
+  max-width: 760px;
+  margin: 10px 0 0;
+  color: #a8a29a;
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+
+/* =========================================================
+   PAGE GRID
+   ---------------------------------------------------------
+   Grilla de 12 columnas para layouts internos.
+   ========================================================= */
+
+.dbp-page-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 12px;
+}
+
+/* =========================================================
+   PANELS
+   ---------------------------------------------------------
+   Paneles reutilizables.
+   ========================================================= */
+
+.dbp-panel {
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, rgba(31, 31, 31, 0.94), rgba(24, 24, 24, 0.92)),
+    #1f1f1f;
+  box-shadow: var(--dbp-shadow-sm);
+  overflow: hidden;
+  animation: dbp-shell-card-enter 240ms ease both;
+}
+
+.dbp-panel__header {
+  min-height: 44px;
+  padding: 11px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.075);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.dbp-panel__header h2,
+.dbp-panel__header h3 {
+  margin: 0;
+  color: #f7f4ef;
+  font-size: 14px;
+  letter-spacing: -0.035em;
+}
+
+.dbp-panel__header span {
+  color: #a8a29a;
+  font-size: 10.5px;
+  font-weight: 800;
+}
+
+.dbp-panel__body {
+  padding: 14px;
+}
+
+/* =========================================================
+   KPI
+   ---------------------------------------------------------
+   Tarjetas de indicadores.
+   ========================================================= */
+
+.dbp-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.dbp-kpi {
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.035);
+  padding: 12px;
+  transition:
+    transform var(--dbp-transition-fast),
+    border-color var(--dbp-transition-base),
+    background var(--dbp-transition-base),
+    box-shadow var(--dbp-transition-base);
+}
+
+.dbp-kpi:hover {
+  transform: translateY(-1px);
+  border-color: rgba(245, 158, 11, 0.22);
+  background: rgba(245, 158, 11, 0.06);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.22);
+}
+
+.dbp-kpi span {
+  color: #a8a29a;
+  font-size: 9.5px;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.dbp-kpi strong {
+  display: block;
+  margin-top: 7px;
+  color: #f7f4ef;
+  font-size: 22px;
+  letter-spacing: -0.055em;
+}
+
+/* =========================================================
+   FORMS
+   ---------------------------------------------------------
+   Campos globales.
+   ========================================================= */
+
+.dbp-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.dbp-field {
+  display: grid;
+  gap: 6px;
+}
+
+.dbp-field label {
+  color: #a8a29a;
+  font-size: 10.5px;
+  font-weight: 850;
+}
+
+.dbp-field input,
+.dbp-field select,
+.dbp-field textarea {
+  width: 100%;
+  min-height: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.045);
+  color: #f7f4ef;
+  outline: none;
+  padding: 0 10px;
+  font-size: 12.5px;
+  transition:
+    border-color var(--dbp-transition-base),
+    background var(--dbp-transition-base),
+    box-shadow var(--dbp-transition-base),
+    transform var(--dbp-transition-fast);
+}
+
+.dbp-field textarea {
+  min-height: 120px;
+  padding: 10px;
+  resize: vertical;
+  font-family:
+    "JetBrains Mono",
+    "Fira Code",
+    Consolas,
+    monospace;
+}
+
+.dbp-field input::placeholder,
+.dbp-field textarea::placeholder {
+  color: #78716c;
+}
+
+.dbp-field input:focus,
+.dbp-field select:focus,
+.dbp-field textarea:focus {
+  transform: translateY(-1px);
+  border-color: rgba(245, 158, 11, 0.42);
+  background: rgba(255, 255, 255, 0.065);
+  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.1);
+}
+
+/* =========================================================
+   TABLE
+   ---------------------------------------------------------
+   Tabla global legible en modo oscuro.
+   ========================================================= */
+
+.dbp-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #1f1f1f;
+  color: #d6d3ce;
+}
+
+.dbp-table th,
+.dbp-table td {
+  padding: 9px 11px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  color: #a8a29a;
+  font-size: 11.8px;
+  text-align: left;
+}
+
+.dbp-table th {
+  color: #f7f4ef;
+  font-size: 9.5px;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.dbp-table td strong {
+  color: #f7f4ef;
+}
+
+.dbp-table tbody tr {
+  transition:
+    background var(--dbp-transition-base),
+    color var(--dbp-transition-base);
+}
+
+.dbp-table tbody tr:hover td {
+  color: #f7f4ef;
+  background: rgba(245, 158, 11, 0.08);
+}
+
+/* =========================================================
+   BADGES
+   ---------------------------------------------------------
+   Badges semánticos globales.
+   ========================================================= */
+
+.dbp-badge {
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.045);
+  color: #a8a29a;
+  font-size: 10.5px;
+  font-weight: 850;
+}
+
+.dbp-badge--ok {
+  border-color: rgba(34, 197, 94, 0.26);
+  background: rgba(34, 197, 94, 0.12);
+  color: #86efac;
+}
+
+.dbp-badge--warn {
+  border-color: rgba(245, 158, 11, 0.28);
+  background: rgba(245, 158, 11, 0.13);
+  color: #fbbf24;
+}
+
+.dbp-badge--danger {
+  border-color: rgba(239, 68, 68, 0.26);
+  background: rgba(239, 68, 68, 0.12);
+  color: #fca5a5;
+}
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes dbp-shell-content-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dbp-shell-card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.995);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1180px) {
+  .dbp-shell {
+    grid-template-columns: 218px minmax(0, 1fr);
+  }
+
+  .dbp-shell--sidebar-collapsed {
+    grid-template-columns: var(--dbp-sidebar-collapsed-width, 70px) minmax(0, 1fr);
+  }
+
+  .dbp-kpi-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dbp-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .dbp-shell,
+  .dbp-shell--sidebar-collapsed {
+    grid-template-columns: 1fr;
+  }
+
+  .dbp-shell__content {
+    padding: 11px;
+  }
+
+  .dbp-fallback-page {
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 240px;
+  }
+
+  .dbp-fallback-page h1 {
+    font-size: 24px;
+  }
+
+  .dbp-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dbp-page-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dbp-shell,
+  .dbp-shell *,
+  .dbp-shell *::before,
+  .dbp-shell *::after {
+    animation-duration: 1ms !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+}

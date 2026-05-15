@@ -1,0 +1,634 @@
+/* =========================================================
+   DBPilot Studio
+   Global Theme
+   ---------------------------------------------------------
+   Tema visual principal del proyecto.
+   Este archivo define el layout general y componentes globales.
+
+   Estilo aplicado:
+   - Oscuro tipo Claude.
+   - Compacto.
+   - Alto contraste.
+   - Superficies sobrias.
+   - Estados activos notorios.
+   ========================================================= */
+
+/* =========================================================
+   APP SHELL
+   ---------------------------------------------------------
+   Contenedor raíz de la aplicación.
+   Define la grilla principal: sidebar + contenido.
+   ========================================================= */
+
+.dbp-app {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: var(--dbp-sidebar-width) minmax(0, 1fr);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(245, 158, 11, 0.12), transparent 28%),
+    radial-gradient(circle at 100% 0%, rgba(192, 132, 252, 0.09), transparent 26%),
+    linear-gradient(135deg, #141414 0%, #181818 48%, #111111 100%);
+  color: var(--dbp-text);
+}
+
+/* =========================================================
+   LEGACY SIDEBAR BASE
+   ---------------------------------------------------------
+   Estilos base para sidebars antiguos o compartidos.
+   El sidebar específico puede tener su propio archivo.
+   ========================================================= */
+
+.dbp-sidebar {
+  min-width: 0;
+  height: 100vh;
+  padding: 12px;
+  border-right: 1px solid var(--dbp-border);
+  background:
+    linear-gradient(180deg, rgba(31, 31, 31, 0.96), rgba(24, 24, 24, 0.94)),
+    #1f1f1f;
+  backdrop-filter: blur(16px);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* =========================================================
+   BRAND
+   ---------------------------------------------------------
+   Marca de la app dentro del sidebar.
+   ========================================================= */
+
+.dbp-brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 40px;
+}
+
+.dbp-brand__mark {
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(245, 158, 11, 0.28);
+  border-radius: 10px;
+  background:
+    linear-gradient(135deg, rgba(245, 158, 11, 0.18), rgba(217, 119, 6, 0.08)),
+    #262626;
+  display: grid;
+  place-items: center;
+  color: var(--dbp-text-strong);
+  font-size: 11px;
+  font-weight: 950;
+  letter-spacing: -0.04em;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.24);
+}
+
+.dbp-brand strong,
+.dbp-brand span {
+  display: block;
+}
+
+.dbp-brand strong {
+  color: var(--dbp-text-strong);
+  font-size: 16px;
+  line-height: 1;
+  letter-spacing: -0.055em;
+}
+
+.dbp-brand span {
+  margin-top: 3px;
+  color: var(--dbp-muted);
+  font-size: 10.5px;
+  line-height: 1;
+  font-weight: 750;
+}
+
+/* =========================================================
+   NAVIGATION
+   ---------------------------------------------------------
+   Navegación global simple.
+   Compacta, oscura y con activos claros.
+   ========================================================= */
+
+.dbp-nav {
+  display: grid;
+  gap: 5px;
+}
+
+.dbp-nav__item {
+  width: 100%;
+  min-height: 34px;
+  padding: 6px 8px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--dbp-muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-align: left;
+  transition:
+    background var(--dbp-transition-base),
+    border-color var(--dbp-transition-base),
+    color var(--dbp-transition-base),
+    transform var(--dbp-transition-fast),
+    box-shadow var(--dbp-transition-base);
+}
+
+.dbp-nav__item span {
+  width: 26px;
+  height: 26px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--dbp-muted);
+  font-size: 11px;
+  font-weight: 950;
+}
+
+.dbp-nav__item strong {
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.dbp-nav__item:hover {
+  transform: translateX(2px);
+  color: var(--dbp-text-strong);
+  border-color: var(--dbp-border);
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.dbp-nav__item:hover span {
+  color: var(--dbp-accent-strong);
+  background: var(--dbp-accent-soft);
+  border-color: rgba(245, 158, 11, 0.22);
+}
+
+.dbp-nav__item--active {
+  color: var(--dbp-text-strong);
+  border-color: rgba(245, 158, 11, 0.34);
+  background:
+    linear-gradient(135deg, rgba(245, 158, 11, 0.16), rgba(255, 255, 255, 0.035)),
+    rgba(255, 255, 255, 0.05);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.24);
+}
+
+.dbp-nav__item--active span {
+  color: #fbbf24;
+  background: rgba(245, 158, 11, 0.18);
+  border-color: rgba(245, 158, 11, 0.34);
+}
+
+/* =========================================================
+   SIDEBAR FOOTER
+   ---------------------------------------------------------
+   Estado o metadata inferior del sidebar.
+   ========================================================= */
+
+.dbp-sidebar__footer {
+  margin-top: auto;
+  min-height: 36px;
+  padding: 9px;
+  border: 1px solid var(--dbp-border);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.045);
+  color: var(--dbp-muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.5px;
+}
+
+.dbp-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--dbp-success);
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.13);
+}
+
+/* =========================================================
+   MAIN
+   ---------------------------------------------------------
+   Zona principal de la app: topbar + contenido.
+   ========================================================= */
+
+.dbp-main {
+  min-width: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================================================
+   TOPBAR
+   ---------------------------------------------------------
+   Barra superior compacta.
+   ========================================================= */
+
+.dbp-topbar {
+  min-height: var(--dbp-topbar-height);
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--dbp-border);
+  background: rgba(24, 24, 24, 0.78);
+  backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.dbp-eyebrow {
+  margin: 0 0 4px;
+  color: var(--dbp-accent-strong);
+  font-size: 9.5px;
+  font-weight: 950;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.dbp-topbar h1 {
+  margin: 0;
+  color: var(--dbp-text-strong);
+  font-size: 18px;
+  line-height: 1.08;
+  letter-spacing: -0.055em;
+}
+
+.dbp-topbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+/* =========================================================
+   PILLS
+   ---------------------------------------------------------
+   Chips informativos.
+   ========================================================= */
+
+.dbp-pill {
+  padding: 5px 8px;
+  border: 1px solid var(--dbp-border);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.045);
+  color: var(--dbp-muted);
+  font-size: 10.5px;
+  font-weight: 850;
+}
+
+/* =========================================================
+   CONTENT
+   ---------------------------------------------------------
+   Scroll principal del contenido.
+   ========================================================= */
+
+.dbp-content {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 14px;
+}
+
+/* =========================================================
+   HERO
+   ---------------------------------------------------------
+   Bloque de bienvenida / dashboard inicial.
+   ========================================================= */
+
+.dbp-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
+  gap: 14px;
+  align-items: stretch;
+}
+
+.dbp-hero__content,
+.dbp-terminal,
+.dbp-card {
+  border: 1px solid var(--dbp-border);
+  background:
+    linear-gradient(180deg, rgba(31, 31, 31, 0.94), rgba(24, 24, 24, 0.92)),
+    #1f1f1f;
+  box-shadow: var(--dbp-shadow-md);
+}
+
+.dbp-hero__content {
+  min-height: 260px;
+  padding: 22px;
+  border-radius: var(--dbp-radius-xl);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.dbp-badge {
+  width: fit-content;
+  padding: 5px 8px;
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  border-radius: 999px;
+  background: var(--dbp-success-soft);
+  color: #86efac;
+  font-size: 10.5px;
+  font-weight: 950;
+}
+
+.dbp-hero h2 {
+  max-width: 760px;
+  margin: 13px 0 0;
+  color: var(--dbp-text-strong);
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: 0.98;
+  letter-spacing: -0.075em;
+}
+
+.dbp-hero p {
+  max-width: 700px;
+  margin: 14px 0 0;
+  color: var(--dbp-muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.dbp-hero__actions {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+/* =========================================================
+   BUTTONS
+   ---------------------------------------------------------
+   Botones globales.
+   ========================================================= */
+
+.dbp-button {
+  min-height: 34px;
+  padding: 0 12px;
+  border-radius: 10px;
+  font-size: 12.5px;
+  font-weight: 850;
+  border: 1px solid transparent;
+  transition:
+    transform var(--dbp-transition-fast),
+    background var(--dbp-transition-base),
+    border-color var(--dbp-transition-base),
+    color var(--dbp-transition-base),
+    box-shadow var(--dbp-transition-base);
+}
+
+.dbp-button:hover {
+  transform: translateY(-1px);
+}
+
+.dbp-button--primary {
+  background:
+    linear-gradient(135deg, var(--dbp-accent-strong), var(--dbp-accent));
+  color: #1c1917;
+  box-shadow: 0 12px 24px rgba(245, 158, 11, 0.18);
+}
+
+.dbp-button--secondary {
+  border-color: var(--dbp-border);
+  background: rgba(255, 255, 255, 0.045);
+  color: var(--dbp-text);
+}
+
+.dbp-button--secondary:hover {
+  background: rgba(255, 255, 255, 0.075);
+  border-color: rgba(245, 158, 11, 0.3);
+  color: var(--dbp-text-strong);
+}
+
+/* =========================================================
+   TERMINAL
+   ---------------------------------------------------------
+   Bloque visual estilo consola.
+   ========================================================= */
+
+.dbp-terminal {
+  border-radius: var(--dbp-radius-xl);
+  overflow: hidden;
+  min-height: 260px;
+}
+
+.dbp-terminal__header {
+  height: 34px;
+  padding: 0 13px;
+  border-bottom: 1px solid var(--dbp-border);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.dbp-terminal__header span {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: rgba(168, 162, 158, 0.45);
+}
+
+.dbp-terminal__header span:nth-child(1) {
+  background: #ef4444;
+}
+
+.dbp-terminal__header span:nth-child(2) {
+  background: #f59e0b;
+}
+
+.dbp-terminal__header span:nth-child(3) {
+  background: #22c55e;
+}
+
+.dbp-terminal pre {
+  margin: 0;
+  padding: 16px;
+  color: #86efac;
+  background:
+    linear-gradient(180deg, rgba(20, 20, 20, 0.94), rgba(15, 15, 15, 0.96)),
+    #111111;
+  font-family:
+    "JetBrains Mono",
+    "Fira Code",
+    Consolas,
+    monospace;
+  font-size: 11.5px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+/* =========================================================
+   GRID / CARDS
+   ---------------------------------------------------------
+   Tarjetas generales de dashboard.
+   ========================================================= */
+
+.dbp-grid {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.dbp-card {
+  min-height: 140px;
+  padding: 15px;
+  border-radius: var(--dbp-radius-lg);
+}
+
+.dbp-card__icon {
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(245, 158, 11, 0.22);
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: var(--dbp-accent-soft);
+  color: var(--dbp-accent-strong);
+  font-weight: 950;
+}
+
+.dbp-card h3 {
+  margin: 14px 0 0;
+  color: var(--dbp-text-strong);
+  font-size: 15px;
+  letter-spacing: -0.04em;
+}
+
+.dbp-card p {
+  margin: 7px 0 0;
+  color: var(--dbp-muted);
+  line-height: 1.55;
+  font-size: 12.2px;
+}
+
+/* =========================================================
+   CARD SURFACE
+   ---------------------------------------------------------
+   Superficie reutilizable para vistas internas.
+   ========================================================= */
+
+.dbp-card-surface {
+  border: 1px solid var(--dbp-border);
+  border-radius: var(--dbp-radius-lg);
+  background:
+    linear-gradient(180deg, rgba(31, 31, 31, 0.94), rgba(24, 24, 24, 0.92)),
+    #1f1f1f;
+  box-shadow: var(--dbp-shadow-md);
+}
+
+/* =========================================================
+   DATA TABLE BASE
+   ---------------------------------------------------------
+   Reglas globales para tablas.
+   Se fuerza contraste oscuro legible.
+   ========================================================= */
+
+.dbp-content table {
+  color: var(--dbp-text);
+  background: #1f1f1f;
+}
+
+.dbp-content thead {
+  background: #262626;
+  color: var(--dbp-text-strong);
+}
+
+.dbp-content th {
+  color: var(--dbp-text-strong);
+  background: #262626;
+  border-bottom: 1px solid var(--dbp-border-strong);
+}
+
+.dbp-content td {
+  color: var(--dbp-text);
+  background: #1f1f1f;
+  border-bottom: 1px solid var(--dbp-border);
+}
+
+.dbp-content tbody tr:hover td {
+  color: var(--dbp-text-strong);
+  background: rgba(245, 158, 11, 0.08);
+}
+
+/* =========================================================
+   UTILITIES
+   ---------------------------------------------------------
+   Clases pequeñas reutilizables.
+   ========================================================= */
+
+.dbp-muted {
+  color: var(--dbp-muted);
+}
+
+.dbp-text-strong {
+  color: var(--dbp-text-strong);
+}
+
+.dbp-hidden {
+  display: none !important;
+}
+
+.dbp-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+/* =========================================================
+   RESPONSIVE
+   ---------------------------------------------------------
+   Ajustes para pantallas medianas y móviles.
+   ========================================================= */
+
+@media (max-width: 1120px) {
+  .dbp-app {
+    grid-template-columns: 218px minmax(0, 1fr);
+  }
+
+  .dbp-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .dbp-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .dbp-app {
+    grid-template-columns: 1fr;
+  }
+
+  .dbp-sidebar {
+    display: none;
+  }
+
+  .dbp-topbar {
+    align-items: flex-start;
+    flex-direction: column;
+    height: auto;
+  }
+
+  .dbp-content {
+    padding: 12px;
+  }
+
+  .dbp-hero__content {
+    padding: 18px;
+  }
+
+  .dbp-topbar__actions {
+    flex-wrap: wrap;
+  }
+}

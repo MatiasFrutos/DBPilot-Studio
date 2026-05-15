@@ -1,0 +1,13 @@
+{
+  "name": "@dbpilot/database-core",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.js",
+  "description": "Database core services and drivers for DBPilot Studio.",
+  "dependencies": {
+    "pg": "latest",
+    "mysql2": "latest",
+    "better-sqlite3": "latest"
+  }
+}

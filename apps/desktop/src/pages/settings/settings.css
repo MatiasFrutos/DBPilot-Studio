@@ -1,0 +1,794 @@
+/* =========================================================
+   DBPilot Studio
+   Settings Page
+   ---------------------------------------------------------
+   Configuración local del producto.
+
+   Estilo:
+   - Oscuro tipo Claude.
+   - Compacto.
+   - Visual cálido.
+   - Formularios claros.
+   - Guardrails destacados.
+   - Responsive.
+   ========================================================= */
+
+/* =========================================================
+   GRID AREAS
+   ========================================================= */
+
+.dbp-settings-page__main {
+  grid-column: span 8;
+}
+
+.dbp-settings-page__side {
+  grid-column: span 4;
+}
+
+.dbp-settings-grid {
+  align-items: start;
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.dbp-settings-hero {
+  min-height: 118px;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at top left, rgba(245, 158, 11, 0.1), transparent 34%),
+    linear-gradient(180deg, rgba(31, 31, 31, 0.95), rgba(24, 24, 24, 0.92)),
+    #1f1f1f;
+  box-shadow: var(--dbp-shadow-md);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+  overflow: hidden;
+  position: relative;
+  animation: dbp-settings-enter 300ms ease both;
+}
+
+.dbp-settings-hero::after {
+  content: "";
+  width: 240px;
+  height: 240px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.12), transparent 68%);
+  position: absolute;
+  right: -104px;
+  bottom: -118px;
+  pointer-events: none;
+}
+
+.dbp-settings-hero > div {
+  position: relative;
+  z-index: 1;
+}
+
+.dbp-settings-hero__eyebrow {
+  margin: 0 0 7px;
+  color: #f59e0b;
+  font-size: 9.5px;
+  font-weight: 950;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.dbp-settings-hero h1 {
+  margin: 0;
+  color: #f7f4ef;
+  font-size: clamp(30px, 3.8vw, 48px);
+  font-weight: 950;
+  line-height: 0.96;
+  letter-spacing: -0.08em;
+}
+
+.dbp-settings-hero > div:first-child > span {
+  display: block;
+  max-width: 760px;
+  margin-top: 11px;
+  color: #a8a29a;
+  font-size: 12.5px;
+  font-weight: 650;
+  line-height: 1.55;
+}
+
+/* =========================================================
+   HERO STATUS
+   ========================================================= */
+
+.dbp-settings-hero__status {
+  min-width: 210px;
+  padding: 12px;
+  border: 1px solid rgba(245, 158, 11, 0.22);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, rgba(245, 158, 11, 0.1), rgba(255, 255, 255, 0.035)),
+    rgba(255, 255, 255, 0.04);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.22);
+  display: grid;
+  gap: 5px;
+}
+
+.dbp-settings-hero__status span {
+  color: #a8a29a;
+  font-size: 9.5px;
+  font-weight: 950;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.dbp-settings-hero__status strong {
+  color: #fbbf24;
+  font-size: 19px;
+  font-weight: 950;
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.dbp-settings-hero__status small {
+  color: #a8a29a;
+  font-size: 10.8px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+/* =========================================================
+   FEEDBACK
+   ========================================================= */
+
+.dbp-settings-feedback {
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.045);
+  color: #d6d3ce;
+  padding: 10px 12px;
+  font-size: 12px;
+  font-weight: 850;
+  box-shadow: 0 9px 20px rgba(0, 0, 0, 0.18);
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  animation: dbp-settings-enter 220ms ease both;
+}
+
+.dbp-settings-feedback span {
+  min-width: 32px;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 999px;
+  background: rgba(245, 158, 11, 0.13);
+  color: #fbbf24;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9.5px;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.dbp-settings-feedback strong {
+  min-width: 0;
+  color: inherit;
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.dbp-settings-feedback--success {
+  border-color: rgba(34, 197, 94, 0.24);
+  background: rgba(34, 197, 94, 0.1);
+  color: #86efac;
+}
+
+.dbp-settings-feedback--success span {
+  background: rgba(34, 197, 94, 0.13);
+  color: #86efac;
+}
+
+.dbp-settings-feedback--error {
+  border-color: rgba(239, 68, 68, 0.26);
+  background: rgba(239, 68, 68, 0.11);
+  color: #fca5a5;
+}
+
+.dbp-settings-feedback--error span {
+  background: rgba(239, 68, 68, 0.14);
+  color: #fca5a5;
+}
+
+/* =========================================================
+   PANELS
+   ========================================================= */
+
+.dbp-settings-page .dbp-panel {
+  border-color: rgba(255, 255, 255, 0.09);
+  border-radius: 15px;
+  background:
+    linear-gradient(180deg, rgba(31, 31, 31, 0.94), rgba(24, 24, 24, 0.92)),
+    #1f1f1f;
+  box-shadow: var(--dbp-shadow-sm);
+  overflow: hidden;
+  animation: dbp-settings-enter 320ms ease both;
+}
+
+.dbp-settings-page .dbp-panel__header {
+  min-height: 54px;
+  padding: 12px 14px;
+  border-bottom-color: rgba(255, 255, 255, 0.075);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.dbp-settings-page .dbp-panel__header > div {
+  min-width: 0;
+}
+
+.dbp-settings-page .dbp-panel__header h2 {
+  color: #f7f4ef;
+  font-size: 15px;
+  font-weight: 950;
+  letter-spacing: -0.035em;
+}
+
+.dbp-settings-page .dbp-panel__header p {
+  margin: 5px 0 0;
+  color: #a8a29a;
+  font-size: 11px;
+  font-weight: 650;
+  line-height: 1.3;
+}
+
+.dbp-settings-page .dbp-panel__header span {
+  color: #a8a29a;
+  font-size: 10.5px;
+  font-weight: 900;
+}
+
+/* =========================================================
+   SETTINGS SECTION
+   ========================================================= */
+
+.dbp-settings-section {
+  display: grid;
+  gap: 13px;
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.085);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.035);
+  animation: dbp-settings-enter 300ms ease both;
+}
+
+.dbp-settings-section + .dbp-settings-section {
+  margin-top: 14px;
+}
+
+.dbp-settings-section__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.dbp-settings-section__header > span {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+  border: 1px solid rgba(245, 158, 11, 0.22);
+  border-radius: 10px;
+  background: rgba(245, 158, 11, 0.13);
+  color: #fbbf24;
+  display: grid;
+  place-items: center;
+  font-size: 10px;
+  font-weight: 950;
+}
+
+.dbp-settings-section__header div {
+  min-width: 0;
+}
+
+.dbp-settings-section__header h3 {
+  margin: 0;
+  color: #f7f4ef;
+  font-size: 14px;
+  font-weight: 950;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+}
+
+.dbp-settings-section__header p {
+  margin: 5px 0 0;
+  color: #a8a29a;
+  font-size: 11.5px;
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+/* =========================================================
+   ACCENT CARDS
+   ========================================================= */
+
+.dbp-settings-accent-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.dbp-settings-accent-card {
+  min-height: 104px;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.085);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.035);
+  color: #d6d3ce;
+  text-align: left;
+  display: grid;
+  align-content: start;
+  gap: 7px;
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform var(--dbp-transition-fast),
+    border-color var(--dbp-transition-base),
+    background var(--dbp-transition-base),
+    box-shadow var(--dbp-transition-base);
+}
+
+.dbp-settings-accent-card::before {
+  content: "";
+  width: 74px;
+  height: 74px;
+  border-radius: 999px;
+  background: rgba(96, 165, 250, 0.13);
+  position: absolute;
+  top: -30px;
+  right: -26px;
+  transition:
+    transform var(--dbp-transition-base),
+    opacity var(--dbp-transition-base);
+}
+
+.dbp-settings-accent-card > span {
+  width: fit-content;
+  padding: 5px 8px;
+  border-radius: 999px;
+  background: rgba(96, 165, 250, 0.12);
+  color: #93c5fd;
+  font-size: 10px;
+  font-weight: 950;
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.dbp-settings-accent-card strong {
+  color: #f7f4ef;
+  font-size: 14px;
+  font-weight: 950;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  position: relative;
+  z-index: 1;
+}
+
+.dbp-settings-accent-card small {
+  max-width: 220px;
+  color: #a8a29a;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.35;
+  position: relative;
+  z-index: 1;
+}
+
+.dbp-settings-accent-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(245, 158, 11, 0.24);
+  background: rgba(245, 158, 11, 0.07);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.24);
+}
+
+.dbp-settings-accent-card:hover::before {
+  transform: scale(1.08);
+}
+
+.dbp-settings-accent-card--active {
+  border-color: rgba(245, 158, 11, 0.32);
+  background:
+    linear-gradient(135deg, rgba(245, 158, 11, 0.13), rgba(255, 255, 255, 0.035)),
+    rgba(255, 255, 255, 0.045);
+  box-shadow:
+    0 0 0 1px rgba(245, 158, 11, 0.08),
+    0 12px 28px rgba(0, 0, 0, 0.24);
+}
+
+.dbp-settings-accent-card--green::before {
+  background: rgba(34, 197, 94, 0.13);
+}
+
+.dbp-settings-accent-card--green > span {
+  background: rgba(34, 197, 94, 0.12);
+  color: #86efac;
+}
+
+.dbp-settings-accent-card--green:hover,
+.dbp-settings-accent-card--green.dbp-settings-accent-card--active {
+  border-color: rgba(34, 197, 94, 0.26);
+  background: rgba(34, 197, 94, 0.08);
+}
+
+.dbp-settings-accent-card--amber::before {
+  background: rgba(245, 158, 11, 0.13);
+}
+
+.dbp-settings-accent-card--amber > span {
+  background: rgba(245, 158, 11, 0.13);
+  color: #fbbf24;
+}
+
+.dbp-settings-accent-card--amber:hover,
+.dbp-settings-accent-card--amber.dbp-settings-accent-card--active {
+  border-color: rgba(245, 158, 11, 0.3);
+  background: rgba(245, 158, 11, 0.09);
+}
+
+/* =========================================================
+   ROW LIMIT
+   ========================================================= */
+
+.dbp-settings-row-limit {
+  display: grid;
+  gap: 8px;
+}
+
+.dbp-settings-row-limit label {
+  color: #a8a29a;
+  font-size: 10.8px;
+  font-weight: 900;
+}
+
+.dbp-settings-row-limit__control {
+  display: grid;
+  gap: 9px;
+}
+
+.dbp-settings-row-limit input {
+  width: 100%;
+  max-width: 220px;
+  min-height: 35px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.045);
+  color: #f7f4ef;
+  outline: none;
+  padding: 0 10px;
+  font-size: 12px;
+  font-weight: 750;
+  color-scheme: dark;
+  transition:
+    border-color var(--dbp-transition-base),
+    box-shadow var(--dbp-transition-base),
+    background var(--dbp-transition-base),
+    transform var(--dbp-transition-fast);
+}
+
+.dbp-settings-row-limit input:focus {
+  transform: translateY(-1px);
+  border-color: rgba(245, 158, 11, 0.42);
+  background: rgba(255, 255, 255, 0.065);
+  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.1);
+}
+
+.dbp-settings-row-limit__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.dbp-settings-row-limit__chips button {
+  min-height: 30px;
+  padding: 0 10px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.045);
+  color: #a8a29a;
+  font-size: 11px;
+  font-weight: 900;
+  transition:
+    transform var(--dbp-transition-fast),
+    border-color var(--dbp-transition-base),
+    background var(--dbp-transition-base),
+    color var(--dbp-transition-base),
+    box-shadow var(--dbp-transition-base);
+}
+
+.dbp-settings-row-limit__chips button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(245, 158, 11, 0.24);
+  background: rgba(245, 158, 11, 0.08);
+  color: #f7f4ef;
+}
+
+.dbp-settings-row-limit__chips button.is-active {
+  border-color: rgba(245, 158, 11, 0.3);
+  background: rgba(245, 158, 11, 0.13);
+  color: #fbbf24;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+}
+
+/* =========================================================
+   TOGGLES
+   ========================================================= */
+
+.dbp-settings-toggle-list {
+  display: grid;
+  gap: 9px;
+}
+
+.dbp-setting-toggle {
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.085);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.035);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  transition:
+    transform var(--dbp-transition-fast),
+    border-color var(--dbp-transition-base),
+    background var(--dbp-transition-base),
+    box-shadow var(--dbp-transition-base);
+}
+
+.dbp-setting-toggle:hover {
+  transform: translateY(-1px);
+  border-color: rgba(245, 158, 11, 0.24);
+  background: rgba(245, 158, 11, 0.07);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
+}
+
+.dbp-setting-toggle div {
+  min-width: 0;
+}
+
+.dbp-setting-toggle h4 {
+  margin: 0;
+  color: #f7f4ef;
+  font-size: 12.8px;
+  font-weight: 950;
+  letter-spacing: -0.025em;
+}
+
+.dbp-setting-toggle p {
+  margin: 5px 0 0;
+  color: #a8a29a;
+  font-size: 11px;
+  font-weight: 650;
+  line-height: 1.4;
+}
+
+.dbp-setting-switch {
+  width: 46px;
+  height: 26px;
+  flex: 0 0 46px;
+  padding: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  transition:
+    background var(--dbp-transition-base),
+    border-color var(--dbp-transition-base),
+    box-shadow var(--dbp-transition-base);
+}
+
+.dbp-setting-switch span {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: #a8a29a;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.22);
+  transition:
+    transform var(--dbp-transition-base),
+    background var(--dbp-transition-base);
+}
+
+.dbp-setting-switch--active {
+  border-color: rgba(245, 158, 11, 0.34);
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  box-shadow: 0 8px 18px rgba(245, 158, 11, 0.18);
+}
+
+.dbp-setting-switch--active span {
+  transform: translateX(20px);
+  background: #1c1917;
+}
+
+/* =========================================================
+   SECURITY
+   ========================================================= */
+
+.dbp-settings-security {
+  display: grid;
+  gap: 9px;
+}
+
+.dbp-settings-security-card {
+  padding: 11px;
+  border: 1px solid rgba(255, 255, 255, 0.085);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.035);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  transition:
+    transform var(--dbp-transition-fast),
+    border-color var(--dbp-transition-base),
+    background var(--dbp-transition-base),
+    box-shadow var(--dbp-transition-base);
+}
+
+.dbp-settings-security-card:hover {
+  transform: translateY(-1px);
+  background: rgba(245, 158, 11, 0.06);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
+}
+
+.dbp-settings-security-card > span {
+  width: 10px;
+  height: 10px;
+  margin-top: 4px;
+  flex: 0 0 10px;
+  border-radius: 999px;
+  background: #a8a29a;
+  box-shadow: 0 0 0 5px rgba(168, 162, 158, 0.1);
+}
+
+.dbp-settings-security-card div {
+  min-width: 0;
+}
+
+.dbp-settings-security-card strong {
+  display: block;
+  color: #f7f4ef;
+  font-size: 12px;
+  font-weight: 950;
+  line-height: 1.15;
+}
+
+.dbp-settings-security-card p {
+  margin: 5px 0 0;
+  color: #a8a29a;
+  font-size: 11px;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+.dbp-settings-security-card--ok {
+  border-color: rgba(34, 197, 94, 0.2);
+}
+
+.dbp-settings-security-card--ok > span {
+  background: #22c55e;
+  box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.11);
+}
+
+.dbp-settings-security-card--warn {
+  border-color: rgba(245, 158, 11, 0.22);
+}
+
+.dbp-settings-security-card--warn > span {
+  background: #f59e0b;
+  box-shadow: 0 0 0 5px rgba(245, 158, 11, 0.11);
+}
+
+.dbp-settings-security-card--danger {
+  border-color: rgba(239, 68, 68, 0.22);
+}
+
+.dbp-settings-security-card--danger > span {
+  background: #ef4444;
+  box-shadow: 0 0 0 5px rgba(239, 68, 68, 0.11);
+}
+
+/* =========================================================
+   ACTIONS
+   ========================================================= */
+
+.dbp-settings-actions {
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 9px;
+}
+
+.dbp-settings-actions .dbp-button {
+  min-height: 35px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes dbp-settings-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.995);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1180px) {
+  .dbp-settings-page__main,
+  .dbp-settings-page__side {
+    grid-column: 1 / -1;
+  }
+
+  .dbp-settings-hero {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .dbp-settings-hero__status {
+    width: 100%;
+  }
+}
+
+@media (max-width: 860px) {
+  .dbp-settings-accent-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dbp-setting-toggle {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .dbp-settings-actions {
+    flex-direction: column;
+  }
+
+  .dbp-settings-actions .dbp-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 760px) {
+  .dbp-settings-hero {
+    padding: 16px;
+  }
+
+  .dbp-settings-hero h1 {
+    font-size: 32px;
+  }
+
+  .dbp-settings-section {
+    padding: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dbp-settings-page *,
+  .dbp-settings-page *::before,
+  .dbp-settings-page *::after {
+    animation-duration: 1ms !important;
+    transition-duration: 1ms !important;
+  }
+}

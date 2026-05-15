@@ -1,0 +1,17 @@
+{
+  "name": "dbpilot-studio",
+  "version": "0.1.0",
+  "private": true,
+  "description": "DBPilot Studio - Desktop database explorer and editor for PostgreSQL, MySQL and SQLite.",
+  "author": "Matias Isaac Frutos Gonzalez",
+  "license": "MIT",
+  "workspaces": [
+    "apps/desktop",
+    "packages/database-core"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace apps/desktop",
+    "build": "npm run build --workspace apps/desktop",
+    "start": "npm run start --workspace apps/desktop"
+  }
+}
