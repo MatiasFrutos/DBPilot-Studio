@@ -916,15 +916,7 @@ Incluye:
 - ✅ Reports.
 - ✅ Settings.
 
----
 
-## 📄 Licencia
-
-Este proyecto puede utilizar licencia MIT.
-
-    MIT License
-
----
 
 ## 👨‍💻 Autor
 
